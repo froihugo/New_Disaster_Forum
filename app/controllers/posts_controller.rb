@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
 
-  def index; @posts = Post.all end
+  def index
+    @posts = Post.all
+  end
 
-  def new; @posts = Post.new end
+  def new
+    @post = Post.new
+  end
 
   def create
     @post = Post.new(params[:post].permit(:title, :content, :location))
@@ -22,7 +26,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params.require(:post).permit(:title, :content, location))
+    if @post.update(params.require(:post).permit(:title, :content, :location))
       redirect_to posts_path
     else
       render :edit, status: :unprocessable_entity
