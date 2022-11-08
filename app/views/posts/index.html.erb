@@ -2,13 +2,13 @@
   <thead>
   <td>title</td>
   <td>content</td>
-  <td>action</td>
+  <td>location</td>
   </thead>
   <% @posts.each do |post| %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
-      <td><%= post.area %></td>
+      <td><%= post.location %></td>
     </tr>
   <% end %>
 </table>
