@@ -1,17 +1,32 @@
-<table class="table table-striped table-light">
+<table class="table table-light">
   <thead>
   <tr>
     <th scope="col">TITLE</th>
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
+    <th scope="col"></th>
   </tr>
   </thead>
   <tbody>
   <% @posts.each do |post| %>
   <tr>
-    <th scope="row"><%= post.title %></th>
-    <td><%= post.content %></td>
+    <th scope="row"><%= link_to post.title.upcase, post_path(post), class: "text-decoration-none" %></th>
+    <td>
+      <% if post.content.length >= 100 %>
+        <%=
+        truncate( post.content,
+        length: 100,
+        separator: ' ',
+        omission: '... ') {
+          link_to 'See More', post_path(post), class: "btn btn-outline-primary btn-sm"
+        }
+        %>
+        <% else %>
+        <%= post.content %>
+      <% end %>
+    </td>
     <td><%= post.location %></td>
+    <td><%= button_to 'DELETE', post_path(post), class: "btn btn-danger" %></td>
   </tr>
   <% end %>
   </tbody>
