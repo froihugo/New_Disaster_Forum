@@ -13,6 +13,8 @@
   <body>
   <%= render 'home/header' %>
   <div class="container border primary">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </div>
   <%= render 'home/footer' %>
