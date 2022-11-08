@@ -13,6 +13,11 @@ class PostsController < ApplicationController
     if post.save
       redirect_to posts_path
     else
+      render :new, status: :unprocessable_entity
+    end
+
+    def show
+      @post = Post.find(params[:id])
     end
   end
 
