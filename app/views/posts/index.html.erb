@@ -27,6 +27,7 @@
     </td>
     <td><%= post.location %></td>
     <td><%= button_to 'DELETE', post_path(post), method: :delete, class: "btn btn-danger" %></td>
+    <td><%= link_to 'comments', post_comments_path(post), class: "btn btn-primary" %></td>
   </tr>
   <% end %>
   </tbody>
