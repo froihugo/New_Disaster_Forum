@@ -1,0 +1,22 @@
+<%= form_with model: comment, url: path, data: { turbo: false } do |form| %>
+  <% if post.errors.any? %>
+    <% post.errors.each do |error| %>
+      <p class="alert alert-warning"><%= error.full_message %></p>
+    <% end %>
+  <% end %>
+
+  <form>
+    <div class="container-fluid border col-6 text-center ">
+      <h2>New Comment</h2>
+      <div class="d-block">
+
+        <div class="form-group py-2">
+          <% form.label :content %>
+          <%= form.text_area :content, placeholder: "Describe what happened...", class: "form-control" %>
+        </div>
+
+      </div>
+      <%= form.submit class: "btn btn-primary" %>
+<% end %>
+</div>
+</form>
