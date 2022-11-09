@@ -3,5 +3,8 @@ Rails.application.routes.draw do
 
   root 'home#Index'
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
 end
