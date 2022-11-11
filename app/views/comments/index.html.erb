@@ -1,14 +1,22 @@
-<h1><%= @post.title.upcase %></h1>
-<p1><%= @post.content %></p1>
-<h2>Comments</h2>
-<ul>
-  <% @comments.each do |comment| %>
-    <li><%= comment.content %></li>
-    <li><%= comment.created_at %></li>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <%= link_to 'edit', edit_post_comment_path(@post, comment), class: "btn btn-secondary" %>
+<div class="container col-8">
+  <div class="card justify-content-lg-center">
+    <div class="card-body">
+      <h2 class="card-header"><span class="text-muted">#<%= @post.id %>&nbsp;</span><%= @post.title.upcase %></h2>
+      <p class="card-title"><%= @post.content %></p>
     </div>
-    <li><%= button_to 'delete', post_comment_path(@post, comment), method: :delete, class: "btn btn-danger" %></li>
-  <% end %>
-</ul>
+  </div>
+</div>
 
+
+<% @comments.each do |comment| %>
+  <div class="container col-8">
+    <div class="card justify-content-lg-center my-4">
+      <div class="card-body">
+        <p class="card-title"><%= comment.content %></p>
+        <p class="card-text"><%= comment.created_at %></p>
+          <%= link_to "edit", edit_post_path(@post), class: "btn btn-outline-primary btn-sm" %>
+          <%= button_to 'delete', post_comment_path(@post, comment), method: :delete,  class: "btn btn-outline-danger btn-sm" %>
+      </div>
+    </div>
+  </div>
+<% end %>

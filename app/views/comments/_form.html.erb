@@ -6,19 +6,19 @@
   <% end %>
 
   <form>
-    <div class="container-fluid border col-6 text-center ">
-      <h1><%= @post.title.upcase %></h1>
-      <p1><%= @post.content %></p1>
-      <div class="d-block">
+      <div class="container-fluid border col-6 text-center ">
+        <h1><%= @post.title.upcase %></h1>
+        <p1><%= @post.content %></p1>
+        <div class="d-block">
 
-        <div class="form-group py-2">
-          <% form.label :content %>
-          <%= form.text_area :content, placeholder: "write a comment...", class: "form-control" %>
+          <div class="form-group py-2">
+            <% form.label :content %>
+            <%= form.text_area :content, placeholder: "write a comment...", class: "form-control" %>
+          </div>
+
         </div>
-
+        <%= form.submit "Confirm", class: "btn btn-primary" %>
+                <%= link_to 'Cancel', posts_path(@post, comment), class: "btn btn-secondary" %>
+  <% end %>
       </div>
-      <%= form.submit "Confirm", class: "btn btn-primary" %>
-      <%= link_to 'Cancel', posts_path(@post, comment), class: "btn btn-secondary" %>
-<% end %>
-</div>
-</form>
+  </form>
