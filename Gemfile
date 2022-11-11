@@ -15,6 +15,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "devise"
 gem "devise-bootstrap-views"
+gem "rest-client"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
