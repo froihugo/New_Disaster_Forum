@@ -1,6 +1,8 @@
-<h1>show post id: <%= @post.id %></h1>
-<ul>
-  <li><%= @post.title %></li>
-  <li><%= @post.content %></li>
-  <li><%= @post.location %></li>
-</ul>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h2 class="card-title"><span class="text-muted">#<%= @post.id %>&nbsp;</span><%= @post.title.upcase %></h2>
+    <p class="card-text"><%= @post.content %></p>
+    <%= link_to "EDIT", edit_post_path(@post), class: "btn btn-primary" %>
+  </div>
+</div>
+
