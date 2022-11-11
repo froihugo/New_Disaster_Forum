@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  # before_action :validate_post_owner, only: [:edit, :update, :destroy]
+  before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -15,10 +15,16 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post].permit(:title, :content, :location))
     @post.user = current_user
+    if Rails.env.development?
+      @post.ip_address = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+    else
+      @post.ip_address = request.remote_ip
+    end
     if @post.save
+      flash[:notice] = 'The post was successfully saved'
       redirect_to posts_path
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -61,4 +67,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, category_ids: [])
   end
 
+  def validate_post_owner
+    unless @post.user == current_user
+      redirect_to posts_path
+    end
+  end
 end
