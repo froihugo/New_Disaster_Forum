@@ -13,11 +13,12 @@
 
         <div class="form-group py-2">
           <% form.label :content %>
-          <%= form.text_area :content, placeholder: "Describe what happened...", class: "form-control" %>
+          <%= form.text_area :content, placeholder: "write a comment...", class: "form-control" %>
         </div>
 
       </div>
-      <%= form.submit class: "btn btn-primary" %>
+      <%= form.submit "Confirm", class: "btn btn-primary" %>
+      <%= link_to 'Cancel', posts_path(@post, comment), class: "btn btn-secondary" %>
 <% end %>
 </div>
 </form>
