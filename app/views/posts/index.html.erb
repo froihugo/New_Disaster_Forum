@@ -4,6 +4,8 @@
     <th scope="col">TITLE</th>
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
+    <th scope="col">USER</th>
+    <th scope="col">IP ADDRESS</th>
     <th scope="col"></th>
   </tr>
   </thead>
@@ -26,6 +28,8 @@
       <% end %>
     </td>
     <td><%= post.location %></td>
+    <td><%= post.user.email %></td>
+    <td class="text-muted"><%= request.remote_ip.to_s %></td>
     <td><%= button_to 'DELETE', post_path(post), method: :delete, class: "btn btn-danger" %></td>
     <td><%= link_to 'comments', post_comments_path(post), class: "btn btn-primary" %></td>
     <td><%= link_to 'write a comment', new_post_comment_path(post), class: "btn btn-primary" %></td>
