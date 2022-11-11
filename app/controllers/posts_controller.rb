@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  #before_action :validate_post_owner, only: [:edit, :update, :destroy]
+  # before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @unique_string = sprintf "%07d", rand(0..9999999), unique: true
   end
 
   def create
@@ -43,6 +44,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def short_url
+    @post = Post.find_by(unique_string: params[:unique_string])
+    redirect_to post_path(@post)
   end
 
   private
