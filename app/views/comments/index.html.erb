@@ -1,0 +1,14 @@
+<h1><%= @post.title.upcase %></h1>
+<p1><%= @post.content %></p1>
+<h2>Comments</h2>
+<ul>
+  <% @comments.each do |comment| %>
+    <li><%= comment.content %></li>
+    <li><%= comment.created_at %></li>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <%= link_to 'edit', edit_post_comment_path(@post, comment), class: "btn btn-secondary" %>
+    </div>
+    <li><%= button_to 'delete', post_comment_path(@post, comment), method: :delete, class: "btn btn-danger" %></li>
+  <% end %>
+</ul>
+

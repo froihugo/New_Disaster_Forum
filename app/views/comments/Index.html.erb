@@ -1,9 +1,0 @@
-<h1>Title <%= @post.title %></h1>
-<h2>Comments</h2>
-<ul>
-  <% @comments.each do |comment| %>
-    <li><%= comment.content %>(<%= comment.created_at %>)</li>
-    <li><%= link_to 'edit', edit_post_comment_path(@post, comment) %></li>
-    <td><%= button_to 'delete', post_comment_path(@post, comment), method: :delete %></td>
-  <% end %>
-</ul>
