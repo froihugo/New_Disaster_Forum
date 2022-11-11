@@ -2,6 +2,8 @@
   <thead>
   <tr>
     <th scope="col">TITLE</th>
+    <th scope="col">POST ID</th>
+    <th scope="col">UNIQUE ID</th>
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
     <th scope="col">USER</th>
@@ -13,6 +15,8 @@
   <% @posts.each do |post| %>
   <tr>
     <th scope="row"><%= link_to post.title.upcase, post_path(post), class: "text-decoration-none" %></th>
+    <td><%= sprintf '%04d', post.id %></td>
+    <td><%= post.unique_string %></td>
     <td>
       <% if post.content.length >= 100 %>
         <%=
@@ -28,12 +32,13 @@
       <% end %>
     </td>
     <td><%= post.location %></td>
-    <td><%= post.user.email %></td>
+    <td><%= post.user.email.gsub(/@.*(?=\S{0})/, '') %></td>
     <td class="text-muted"><%= request.remote_ip.to_s %></td>
-    <td><%= button_to 'DELETE', post_path(post), method: :delete, class: "btn btn-danger" %></td>
+    <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
     <td><%= link_to 'comments', post_comments_path(post), class: "btn btn-primary" %></td>
     <td><%= link_to 'write a comment', new_post_comment_path(post), class: "btn btn-primary" %></td>
-  </tr>
   <% end %>
+  </tr>
   </tbody>
 </table>
+<%= link_to "Create a new post", new_post_path(@post), class: "btn btn-primary" %>
