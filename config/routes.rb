@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :comments, except: :show
   end
 
+  get "/:unique_string", to: "posts#short_url"
+
 end
