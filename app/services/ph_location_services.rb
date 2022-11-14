@@ -27,4 +27,32 @@ class PhLocationService
     end
   end
 
+  def fetch_district
+    request = RestClient.get("#{url}/districts/")
+    data = JSON.parse(request.body)
+    data.each do |district|
+      address_district = Address::District.find_or_initialize_by(code: district['code'])
+      region = Address::Region.find_or_initialize_by(code: district['regionCode'])
+      address_district.region = region
+      address_district.name = district['name']
+      address_district.save
+    end
+  end
+
+  # def fetch_city_municipality
+  #   request = RestClient.get("#{url}/cities-municipalities/")
+  #   data = JSON.parse(request.body)
+  #   data.each do |city_municipality|
+  #     address_city_municipality = Address::District.find_or_initialize_by(code: city_municipality['code'])
+  #     region = Address::Region.find_by_code(city_municipality['regionCode'])
+  #     province = Address::Province.find_by_code(city_municipality['provinceCode'])
+  #     district = Address::District.find_by_code(city_municipality['districtCode'])
+  #     address_city_municipality.region = region
+  #     address_city_municipality.province = province
+  #     address_city_municipality.district = district
+  #     address_city_municipality.name = city_municipality['name']
+  #     address_city_municipality.save
+  #   end
+  # end
+
 end
