@@ -37,6 +37,7 @@
     </td>
     <td><%= post.location %></td>
     <td><%= post.user.email.gsub(/@.*(?=\S{0})/, '') %></td>
+    <td><%= post.categories.pluck(:name).join(',') %></td>
     <td class="text-muted"><%= Geocoder.search(post.ip_address).first.country %></td>
 
   <% end %>

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
-    @posts = Post.all
+    @posts = Post.includes(:categories).all
     respond_to do |format|
       format.html
       format.json { render json: @posts, each_serializer: PostSerializer }
