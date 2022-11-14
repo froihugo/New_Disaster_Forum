@@ -2,10 +2,14 @@
   <div class="card justify-content-lg-center">
     <div class="card-body">
       <h2 class="card-header"><span class="text-muted">#<%= @post.id %>&nbsp;</span><%= @post.title.upcase %></h2>
+      <small class="text-muted"><%= @post.user.email %></small>
       <p class="card-title"><%= @post.content %></p>
+      <%= link_to 'comments', post_comments_path(@post), class: "btn btn-primary" %>
+      <%= link_to 'write a comment', new_post_comment_path(@post), class: "btn btn-primary" %>
       <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if @post.user == current_user %>
       <%= button_to 'Delete', post_path(@post), method: :delete, class: "btn btn-danger" if @post.user == current_user %>
     </div>
   </div>
 </div>
+
 

@@ -6,11 +6,13 @@
   <% end %>
 
   <form>
-      <div class="container-fluid border col-6 text-center ">
-        <h1><%= @post.title.upcase %></h1>
-        <p1><%= @post.content %></p1>
-        <div class="d-block">
+    <div class="container col-8">
+      <div class="card justify-content-lg-center">
+        <div class="card-body">
+          <h2 class="card-header"><span class="text-muted">#<%= @post.id %>&nbsp;</span><%= @post.title.upcase %></h2>
+          <p class="card-title"><%= @post.content %></p>
 
+        <div class="d-block">
           <div class="form-group py-2">
             <% form.label :content %>
             <%= form.text_area :content, placeholder: "write a comment...", class: "form-control" %>
@@ -20,5 +22,7 @@
         <%= form.submit "Confirm", class: "btn btn-primary" %>
                 <%= link_to 'Cancel', posts_path(@post, comment), class: "btn btn-secondary" %>
   <% end %>
+        </div>
       </div>
+    </div>
   </form>
