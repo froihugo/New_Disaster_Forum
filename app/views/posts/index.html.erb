@@ -13,7 +13,11 @@
   </thead>
   <tbody>
   <% @posts.each do |post| %>
+    <% if @hot_posts.include?(post)%>
+      <tr class="table-info">
+      <% else %>
   <tr>
+    <% end %>
     <th scope="row"><%= link_to post.title.upcase, post_path(post), class: "text-decoration-none" %></th>
     <td><%= sprintf '%04d', post.id %></td>
     <td><%= post.unique_string %></td>
@@ -34,8 +38,7 @@
     <td><%= post.location %></td>
     <td><%= post.user.email.gsub(/@.*(?=\S{0})/, '') %></td>
     <td class="text-muted"><%= Geocoder.search(post.ip_address).first.country %></td>
-    <td><%= link_to 'comments', post_comments_path(post), class: "btn btn-primary" %></td>
-    <td><%= link_to 'write a comment', new_post_comment_path(post), class: "btn btn-primary" %></td>
+
   <% end %>
   </tr>
   </tbody>
