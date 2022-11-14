@@ -1,2 +1,2 @@
-module Api::ProvincesHelper
+module Api::DistrictsHelper
 end
