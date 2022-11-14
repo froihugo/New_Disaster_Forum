@@ -12,10 +12,16 @@
   <div class="container col-8">
     <div class="card justify-content-lg-center my-4">
       <div class="card-body">
+        <small><%= comment.user.email %></small>
         <p class="card-title"><%= comment.content %></p>
         <p class="card-text"><%= comment.created_at %></p>
-          <%= link_to "edit", edit_post_path(@post), class: "btn btn-outline-primary btn-sm" %>
-          <%= button_to 'delete', post_comment_path(@post, comment), method: :delete,  class: "btn btn-outline-danger btn-sm" %>
+        <% if comment.user == current_user %>
+          <div>
+            <%= link_to "edit", edit_post_path(@post), class: "btn btn-outline-primary btn-sm" %>
+            <%= button_to 'delete', post_comment_path(@post, comment), method: :delete,  class: "btn btn-outline-danger btn-sm" %>
+          </div>
+          <% else %>
+          <% end %>
       </div>
     </div>
   </div>
