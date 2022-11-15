@@ -18,6 +18,7 @@ gem "devise-bootstrap-views"
 gem "rest-client"
 gem "geocoder"
 gem 'active_model_serializers'
+gem 'carrierwave'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
