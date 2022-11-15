@@ -6,7 +6,6 @@
     <th scope="col">UNIQUE ID</th>
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
-    <th scope="col">USER</th>
     <th scope="col">CATEGORY</th>
     <th scope="col">IP COUNTRY</th>
     <th scope="col"></th>
@@ -37,7 +36,6 @@
       <% end %>
     </td>
     <td><%= post.location %></td>
-    <td><%= post.user.email.gsub(/@.*(?=\S{0})/, '') %></td>
     <td><%= post.categories.pluck(:name).join(' / ') %></td>
 <!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.country %></td>-->
 
