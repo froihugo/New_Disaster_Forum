@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     @posts = Post.includes(:categories).all
+    @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     respond_to do |format|
       format.html
       format.json { render json: @posts, each_serializer: PostSerializer }
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post].permit(:title, :content, :location))
+    @post = Post.new(post_params)
     @post.user = current_user
     if Rails.env.development?
       @post.ip_address = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, category_ids: [])
+    params.require(:post).permit(:title, :content, :location, category_ids: [])
   end
 
   def validate_post_owner

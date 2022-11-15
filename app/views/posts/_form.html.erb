@@ -23,16 +23,13 @@
           <%= form.text_field :location, placeholder: "Location", class: "form-control" %>
         </div>
 
-        <div class="container border mx-2">
-          <div class="form-group py-2">
-            <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
-          </div>
+        <div class="form-check py-2">
+          <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
         </div>
-
 
       </div>
       <%= form.submit class: "btn btn-primary" %>
-      <%= link_to "Clear", new_post_path, class: "btn btn-secondary" %>
+      <%= link_to "Clear",  new_post_path, class: "btn btn-secondary" %>
       </div>
 
 

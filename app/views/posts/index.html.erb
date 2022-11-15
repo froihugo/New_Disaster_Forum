@@ -7,6 +7,7 @@
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
     <th scope="col">USER</th>
+    <th scope="col">CATEGORY</th>
     <th scope="col">IP COUNTRY</th>
     <th scope="col"></th>
   </tr>
@@ -14,10 +15,10 @@
   <tbody>
   <% @posts.each do |post| %>
     <% if @hot_posts.include?(post)%>
-      <tr class="table-info">
-      <% else %>
-  <tr>
-    <% end %>
+    <tr class="table-info">
+  <% else %>
+    <tr>
+  <% end %>
     <th scope="row"><%= link_to post.title.upcase, post_path(post), class: "text-decoration-none" %></th>
     <td><%= sprintf '%04d', post.id %></td>
     <td><%= post.unique_string %></td>
@@ -37,8 +38,8 @@
     </td>
     <td><%= post.location %></td>
     <td><%= post.user.email.gsub(/@.*(?=\S{0})/, '') %></td>
-    <td><%= post.categories.pluck(:name).join(',') %></td>
-    <td class="text-muted"><%= Geocoder.search(post.ip_address).first.country %></td>
+    <td><%= post.categories.pluck(:name).join(' / ') %></td>
+<!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.country %></td>-->
 
   <% end %>
   </tr>
