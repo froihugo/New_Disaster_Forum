@@ -36,11 +36,12 @@
       <% end %>
     </td>
     <td><%= post.location %></td>
-    <td><%= post.categories.pluck(:name).join(' / ') %></td>
-<!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.country %></td>-->
+    <td class="col-sm-1"><%= post.categories.pluck(:name).join("\n")%></td>
+<!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.address%></td>-->
 
   <% end %>
   </tr>
   </tbody>
 </table>
+<%= paginate @posts %>
 <%= link_to "Create a new post", new_post_path(@post), class: "btn btn-primary" %>
