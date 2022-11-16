@@ -20,6 +20,7 @@ class PostsController < ApplicationController
         end
         render plain: csv_string
       }
+      format.xml { render xml: @posts.as_json }
     end
   end
 
@@ -84,7 +85,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :location, category_ids: [])
+    params.require(:post).permit(:image, :title, :content, :location, category_ids: [])
   end
 
   def validate_post_owner
