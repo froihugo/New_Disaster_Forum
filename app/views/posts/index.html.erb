@@ -1,4 +1,5 @@
 <table class="table table-light">
+  <%= link_to 'export', posts_path(format: :csv), class: "btn btn-outline-dark btn-sm" %>
   <thead>
   <tr>
     <th scope="col">TITLE</th>
@@ -14,10 +15,10 @@
   <tbody>
   <% @posts.each do |post| %>
     <% if @hot_posts.include?(post)%>
-    <tr class="table-info">
-  <% else %>
+    <tr class="table-danger">
+    <% else %>
     <tr>
-  <% end %>
+    <% end %>
     <th scope="row"><%= link_to post.title.upcase, post_path(post), class: "text-decoration-none" %></th>
     <td><%= sprintf '%04d', post.id %></td>
     <td><%= post.unique_string %></td>
@@ -38,8 +39,7 @@
     <td><%= post.location %></td>
     <td class="col-sm-1"><%= post.categories.pluck(:name).join("\n")%></td>
 <!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.address%></td>-->
-
-  <% end %>
+<% end %>
   </tr>
   </tbody>
 </table>
