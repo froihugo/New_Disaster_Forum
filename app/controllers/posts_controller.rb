@@ -3,12 +3,23 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
+  require 'csv'
+
   def index
     @posts = Post.includes(:categories, :user).page(params[:page]).per(5)
     @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     respond_to do |format|
       format.html
       format.json { render json: @posts, each_serializer: PostSerializer }
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << [Post.human_attribute_name(:title), Post.human_attribute_name(:id), User.human_attribute_name(:email), Post.human_attribute_name(:content), Post.human_attribute_name(:categories), Post.human_attribute_name(:created_at)]
+          @posts.each do |post|
+            csv << [post.title, post.id, post.user.email, post.content, post.categories.pluck(:name).join(','), post.created_at]
+          end
+        end
+        render plain: csv_string
+      }
     end
   end
 
