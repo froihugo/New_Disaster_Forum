@@ -19,6 +19,8 @@ gem "rest-client"
 gem "geocoder"
 gem 'active_model_serializers'
 gem 'carrierwave'
+gem 'faker'
+gem 'kaminari'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
