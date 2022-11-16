@@ -4,6 +4,11 @@
       <h2 class="card-header"><span class="text-muted">#<%= @post.id %>&nbsp;</span><%= @post.title.upcase %></h2>
       <small class="text-muted"><%= @post.user.email %></small>
       <p class="card-title"><%= @post.content %></p>
+      <div>
+        <div class="card justify-content-lg-center">
+          <%= image_tag @post.image.url if @post.image.present? %>
+        </div>
+      </div>
       <%= link_to 'comments', post_comments_path(@post), class: "btn btn-primary" %>
       <%= link_to 'write a comment', new_post_comment_path(@post), class: "btn btn-primary" %>
       <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if @post.user == current_user %>

@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   validates :content, presence: true
   validates :location, presence: true
 
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
   has_many :comments
   has_many :post_category_ships
