@@ -1,3 +1,4 @@
+<p class="notice"></p>
 <table class="table table-light">
   <%= link_to 'export', posts_path(format: :csv), class: "btn btn-outline-dark btn-sm" %>
   <thead>
@@ -8,8 +9,9 @@
     <th scope="col">DESCRIPTION</th>
     <th scope="col">LOCATION</th>
     <th scope="col">CATEGORY</th>
-    <th scope="col">IP COUNTRY</th>
     <th scope="col"></th>
+    <th scope="col">USERS</th>
+    <th scope="col">COPY</th>
   </tr>
   </thead>
   <tbody>
@@ -39,6 +41,13 @@
     <td><%= post.location %></td>
     <td class="col-sm-1"><%= post.categories.pluck(:name).join("\n")%></td>
 <!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.address%></td>-->
+    <td></td>
+
+    <td data-controller="clipboard">
+      <span data-clipboard-target="email"><%= post.user.email %></span>
+      <button data-action="click->clipboard#copy">copy</button>
+    </td>
+
 <% end %>
   </tr>
   </tbody>
