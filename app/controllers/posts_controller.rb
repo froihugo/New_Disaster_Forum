@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   require 'csv'
 
   def index
-    @posts = Post.includes(:categories, :user).page(params[:page]).per(25)
+    @posts = Post.includes(:categories, :user, :region, :province).page(params[:page]).per(25)
     @hot_posts = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     respond_to do |format|
       format.html
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:image, :title, :content, :location, category_ids: [])
+    params.require(:post).permit( :address_region_id, :address_province_id, :image, :title, :content, :location, category_ids: [])
   end
 
   def validate_post_owner
