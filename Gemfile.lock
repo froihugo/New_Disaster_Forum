@@ -125,7 +125,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jquery (0.0.1)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     jsonapi-renderer (0.2.2)
@@ -262,7 +261,6 @@ DEPENDENCIES
   faker
   geocoder
   jbuilder
-  jquery
   jsbundling-rails
   kaminari
   mysql2 (~> 0.5)

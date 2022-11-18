@@ -7,9 +7,8 @@
     <th scope="col">POST ID</th>
     <th scope="col">UNIQUE ID</th>
     <th scope="col">DESCRIPTION</th>
-    <th scope="col">LOCATION</th>
     <th scope="col">CATEGORY</th>
-    <th scope="col">ADDRESS</th>>
+    <th scope="col">ADDRESS</th>
     <th scope="col"></th>
     <th scope="col">USERS</th>
     <th scope="col">COPY</th>
@@ -39,14 +38,13 @@
         <%= post.content %>
       <% end %>
     </td>
-    <td><%= post.location %></td>
     <td class="col-sm-1"><%= post.categories.pluck(:name).join("\n")%></td>
-    <td><%= "#{post.region&.name} #{post.province&.name} #{post.address}" %></td>
 <!--    <td class="text-muted"><%#= Geocoder.search(post.ip_address).first.address%></td>-->
+
     <td></td>
 
     <td data-controller="clipboard">
-      <span data-clipboard-target="email"><%= post.user.email %></span>
+      <span data-clipboard-target="email"><%= post.user.email %></span><br>
       <button data-action="click->clipboard#copy">copy</button>
     </td>
 
