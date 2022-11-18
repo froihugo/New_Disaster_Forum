@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <h1 class="navbar-brand mx-4 my-auto">DISASTER FORUM MAKATI</h1>
   <% if user_signed_in? %>
-    <%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link nav-item active' %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-light' %>
     <% else %>
 
-    <%= button_to "Login", new_user_session_path, :class => 'navbar-link nav-item active' %>
+    <%= link_to "Login", new_user_session_path, class: 'btn btn-light' %>
     <% end %>
 </nav>
