@@ -6,13 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", defer: false %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: false %>
   </head>
 
   <body>
   <%= render 'home/header' %>
-  <p><%= notice %></p>
+  <p class="alert-danger"><%= notice %></p>
   <p class="alert-danger"><%= alert %></p>
   <div class="container border">
   <%= yield %>
