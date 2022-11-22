@@ -32,11 +32,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    # if Rails.env.development?
-    #   @post.ip_address = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
-    # else
-    #   @post.ip_address = request.remote_ip
-    # end
+    if Rails.env.development?
+      @post.ip_address = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+    else
+      @post.ip_address = request.remote_ip
+    end
     if @post.save
       flash[:notice] = 'The post was successfully saved'
       redirect_to posts_path
@@ -53,14 +53,13 @@ class PostsController < ApplicationController
       end
     end
 
-
   def edit
     @post = Post.find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params.require(:post).permit(:title, :content, :location))
+    if @post.update(params.require(:post).permit(:title, :content, :image))
       redirect_to posts_path
     else
       render :edit, status: :unprocessable_entity
@@ -85,7 +84,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit( :address_region_id, :address_province_id, :image, :title, :content, :location, category_ids: [])
+    params.require(:post).permit( :title, :content, :image, :address_region_id, :address_province_id, category_ids: [])
   end
 
   def validate_post_owner
