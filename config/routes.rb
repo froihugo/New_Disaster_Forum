@@ -2,19 +2,21 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
   root 'home#Index'
 
-  resources :categories
-  resources :posts do
-    resources :comments, except: :show
-  end
+    resources :categories
+    resources :posts do
+      resources :comments, except: :show
+    end
+    resources :top_ups, only: [:new, :create]
 
   get "/:unique_string", to: "posts#short_url"
 
   constraints(AdminDomainConstraint.new) do
     namespace :admin do
-      resources :users
     end
+      resources :users
   end
 
   namespace :api do
