@@ -6,4 +6,7 @@
 
     <%= link_to "Login", new_user_session_path, class: 'btn btn-light' %>
     <% end %>
+
+  <%= link_to "EN", params.permit!.merge(locale: 'en') %>
+  <%= link_to "PH", params.permit!.merge(locale: 'ph') %>
 </nav>
